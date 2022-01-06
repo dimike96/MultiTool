@@ -33,9 +33,9 @@ MORSE_CODE_LIST = MORSE_CODE_DICT.items()
 def main():
     print("Welcome to Multitool V.1.1.0!!")
     print(" ")
-    print("This tool can encode and decode morse, base64, and ascii. ")
-    print("0=MorseDecoder, 1=MorseEncoder, 2=Base64Decoder, 3=Base64Encoder, 4=AsciiDecoder, 5=AsciiEncoder. (Q to Quit)")
-    valid_inputs = 'Q012345'
+    print("This tool can encode and decode morse, base64, hex and ascii. ")
+    print("0=MorseDecoder, 1=MorseEncoder, 2=Base64Decoder, 3=Base64Encoder, 4=AsciiDecoder, 5=AsciiEncoder, 6=HexDecoder, 7=HexEncoder (Q to Quit)")
+    valid_inputs = 'Q01234567'
     loop_cond = True
     while loop_cond == True:
         try:
@@ -54,6 +54,10 @@ def main():
                 print(ascii_textify())
             if selection == '5':
                 print(text_asciify())
+            if selection == '6':
+                print(unhex_it())
+            if selection == '7':
+                print(hex_it())
             if selection == 'Q':
                 loop_cond = False
                 exit_tool()
@@ -108,6 +112,20 @@ def text_asciify():     # Text to ascii decoder ## I believe this isn't right
     string_bytes = string.encode('ascii')
     output = string_bytes
     print(output)
+    return output
+
+def hex_it():      # hex encoding function
+    string = input('Enter String:')
+    string_bytes = string.encode('ascii')
+    string_hex = binascii.hexlify(string_bytes)
+    output = string_hex
+    # print(output)
+    return output
+
+def unhex_it():     # hex decoding function
+    string = input('Enter String:')
+    string_bytes = binascii.unhexlify(string)
+    output = string_bytes.decode('ascii')
     return output
 
 def exit_tool():    # This is just a exit output
