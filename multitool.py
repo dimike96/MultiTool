@@ -34,8 +34,8 @@ def main():
     print("Welcome to Multitool V.1.1.0!!")
     print(" ")
     print("This tool can encode and decode morse, base64, hex and ascii. ")
-    print("0=MorseDecoder, 1=MorseEncoder, 2=Base64Decoder, 3=Base64Encoder, 4=AsciiDecoder, 5=AsciiEncoder, 6=HexDecoder, 7=HexEncoder (Q to Quit)")
-    valid_inputs = 'Q01234567'
+    print("0=MorseDecoder, 1=MorseEncoder, 2=Base64Decoder, 3=Base64Encoder, 4=AsciiDecoder, 5=AsciiEncoder, 6=HexDecoder, 7=HexEncoder, 8=Deicmal2Binary, 9=Binary2Decimal (Q to Quit)")
+    valid_inputs = 'Q0123456789'
     loop_cond = True
     while loop_cond == True:
         try:
@@ -58,6 +58,10 @@ def main():
                 print(unhex_it())
             if selection == '7':
                 print(hex_it())
+            if selection == '8':
+                print(decibin())
+            if selection == '9':
+                print(bindec())
             if selection == 'Q':
                 loop_cond = False
                 exit_tool()
@@ -101,17 +105,25 @@ def basesixty4_decoder():   # Base64 decoding function
     # print(output)
     return output
 
-def ascii_textify():    # ASCII to text decoder ## I believe this isn't right
+def ascii_textify():    # ASCII to text decoder
     string = input('Enter String:')
-    output = string.decode('ascii')
-    print(output)
+    string_list = string.split(' ')
+    output_list = []
+    for element in string_list:
+        element = chr(int(element))
+        output_list.append(element)
+    output = ''.join(output_list)
+    # print(output)
     return output
 
-def text_asciify():     # Text to ascii decoder ## I believe this isn't right
+def text_asciify():     # Text to ascii decoder
     string = input('Enter String:')
-    string_bytes = string.encode('ascii')
-    output = string_bytes
-    print(output)
+    string_list = list(string)
+    output_list = []
+    for element in string_list:
+        element = ord(element)
+        output_list.append(str(element) + " ")
+    output = ''.join(output_list)
     return output
 
 def hex_it():      # hex encoding function
@@ -127,6 +139,20 @@ def unhex_it():     # hex decoding function
     string_bytes = binascii.unhexlify(string)
     output = string_bytes.decode('ascii')
     return output
+
+def decibin():  # Decimal to binary function
+    string = input('Enter String:')
+    string_binary = bin(int(string))
+    output = string_binary.replace('0b', '')
+    return output
+
+def bindec():   # Binary to decimal function
+    string_binary = input('Enter String:')
+    bin_prefix = '0b' # Accounts for a stripped pure 1 0 binary string input
+    string_binary = bin_prefix + string_binary
+    output = int(string_binary,2)
+    return output
+
 
 def exit_tool():    # This is just a exit output
     print("Thanks for using this tool.")
