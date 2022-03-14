@@ -153,7 +153,6 @@ def bindec():   # Binary to decimal function
     output = int(string_binary,2)
     return output
 
-
 def exit_tool():    # This is just a exit output
     print("Thanks for using this tool.")
 
