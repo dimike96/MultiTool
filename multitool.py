@@ -9,6 +9,7 @@
 import binascii
 import base64
 import random
+import string
 
 # Assets section
 MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
@@ -26,16 +27,17 @@ MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
                     '0':'-----', ', ':'--..--', '.':'.-.-.-',
                     '?':'..--..', '/':'-..-.', '-':'-....-',
                     '(':'-.--.', ')':'-.--.-'}
-
 MORSE_CODE_LIST = MORSE_CODE_DICT.items()
+ALPHABET_lower = string.ascii_lowercase
+ALPHABET_upper = string.ascii_uppercase
 
 # Sort of hub function with interface to choose which operation to perform on a given string
 def main():
     print("Welcome to Multitool V.1.1.0!!")
     print(" ")
     print("This tool can encode and decode morse, base64, hex and ascii. ")
-    print("0=MorseDecoder, 1=MorseEncoder, 2=Base64Decoder, 3=Base64Encoder, 4=AsciiDecoder, 5=AsciiEncoder, 6=HexDecoder, 7=HexEncoder, 8=Deicmal2Binary, 9=Binary2Decimal (Q to Quit)")
-    valid_inputs = 'Q0123456789'
+    print("0=MorseDecoder, 1=MorseEncoder, 2=Base64Decoder, 3=Base64Encoder, 4=AsciiDecoder, 5=AsciiEncoder, 6=HexDecoder, 7=HexEncoder, 8=Deicmal2Binary, 9=Binary2Decimal, C=Ceaser (Q to Quit)")
+    valid_inputs = 'Q0123456789C'
     loop_cond = True
     while loop_cond == True:
         try:
@@ -62,6 +64,8 @@ def main():
                 print(decibin())
             if selection == '9':
                 print(bindec())
+            if selection == 'C':
+                print(ceasar())
             if selection == 'Q':
                 loop_cond = False
                 exit_tool()
@@ -153,6 +157,28 @@ def bindec():   # Binary to decimal function
     output = int(string_binary,2)
     return output
 
+def ceasar(): # Ceaser cipher function
+    cyphertext = input('Enter String: ')
+    rot_val = input('Enter ROT value: ')
+    rot_val = int(rot_val)
+    output = ""
+    for char in cyphertext:
+        if char in ALPHABET_lower:
+            char_index = ALPHABET_lower.index(char)
+            new_char_index = char_index + rot_val
+            if new_char_index > len(ALPHABET_lower):
+                new_char_index = new_char_index % len(ALPHABET_lower)
+            output = output + (ALPHABET_lower[new_char_index])
+        if char in ALPHABET_upper:
+            char_index = ALPHABET_upper.index(char)
+            new_char_index = char_index + rot_val
+            if new_char_index > len(ALPHABET_upper):
+                new_char_index = new_char_index % len(ALPHABET_upper)
+            output = output + (ALPHABET_upper[new_char_index])
+        else:
+            output.join(char)
+    return output
+    
 def exit_tool():    # This is just a exit output
     print("Thanks for using this tool.")
 
