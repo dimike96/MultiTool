@@ -165,8 +165,8 @@ def ceasar(): # Ceaser cipher function
         if char in ALPHABET_lower:
             char_index = ALPHABET_lower.index(char)
             new_char_index = char_index + rot_val
-            if new_char_index > len(ALPHABET_lower):
-                new_char_index = new_char_index % len(ALPHABET_lower)
+            if new_char_index > (len(ALPHABET_lower) - 1):
+                new_char_index = new_char_index % 26
             output = output + (ALPHABET_lower[new_char_index])
         elif char in ALPHABET_upper:
             char_index = ALPHABET_upper.index(char)
