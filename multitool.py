@@ -1,3 +1,5 @@
+#!/bin/python3
+
 # multitool.py
 
 # This will be a crpytography multitool
@@ -81,32 +83,27 @@ def morse_encoder():    # Morse code encoding function
             output += MORSE_CODE_DICT[char] + ' '
         else:
             output += ' '
-    # print(output)
     return output
 
 def morse_decoder():    # Morse code decoding function
     string = input('Enter String:')
-    # string_list = string.split('/')
     string_list = string.split(' ')
     output_list = []
     for element in string_list:
         output_list = output_list + [char for char,morse in MORSE_CODE_LIST if morse == element]
     output = ''.join(output_list)
-    # print(output)
     return output
 
 def basesixty4_encoder():   # Base64 encoding function
     string = input('Enter String:')
     string_bytes = string.encode('ascii')
     output = base64.b64encode(string_bytes)
-    # print(output)
     return output
 
 def basesixty4_decoder():   # Base64 decoding function
     string = input('Enter String:')
     string_bytes = base64.b64decode(string)
     output = string_bytes.decode('ascii')
-    # print(output)
     return output
 
 def ascii_textify():    # ASCII to text decoder
@@ -117,7 +114,6 @@ def ascii_textify():    # ASCII to text decoder
         element = chr(int(element))
         output_list.append(element)
     output = ''.join(output_list)
-    # print(output)
     return output
 
 def text_asciify():     # Text to ascii decoder
@@ -135,7 +131,6 @@ def hex_it():      # hex encoding function
     string_bytes = string.encode('ascii')
     string_hex = binascii.hexlify(string_bytes)
     output = string_hex
-    # print(output)
     return output
 
 def unhex_it():     # hex decoding function
@@ -159,8 +154,12 @@ def bindec():   # Binary to decimal function
 
 def ceasar(): # Ceaser cipher function
     cyphertext = input('Enter String: ')
-    rot_val = input('Enter ROT value: ')
-    rot_val = int(rot_val)
+    while True:
+        try:
+            rot_val = int(input('Enter ROT value: '))
+            break
+        except ValueError:
+            print('ROT value needs to be an integer!')
     output = ""
     for char in cyphertext:
         if char in ALPHABET_lower:
@@ -169,14 +168,14 @@ def ceasar(): # Ceaser cipher function
             if new_char_index > len(ALPHABET_lower):
                 new_char_index = new_char_index % len(ALPHABET_lower)
             output = output + (ALPHABET_lower[new_char_index])
-        if char in ALPHABET_upper:
+        elif char in ALPHABET_upper:
             char_index = ALPHABET_upper.index(char)
             new_char_index = char_index + rot_val
             if new_char_index > len(ALPHABET_upper):
                 new_char_index = new_char_index % len(ALPHABET_upper)
             output = output + (ALPHABET_upper[new_char_index])
         else:
-            output.join(char)
+            output = output + (char)
     return output
     
 def exit_tool():    # This is just a exit output
