@@ -1,17 +1,15 @@
-INTRODUCTION
-------------
+# Introduction / Overview
 
-MultiTool is a basic cryptography tool that enabled decoding/encoding Morse, Base64, Ceaser Ciphers, and ASCII. It is a very simple tool that can be used for ARG's and CTF's.
-There will likely be a few more modules added and further changes made to cover the basics and make it more robust. Features such as verifying the input has been classified correctly, is a valid type etc., should be implemented..
+MultiTool is a basic cryptography tool that enabled decoding/encoding Morse, Base64, Ceaser Ciphers, and ASCII. It's very simple and can be used for ARG's and CTF's.
+I will likely add features, and make further changes to cover the basics and make it more robust. 
 
- * To submit bug reports and feature suggestions, or track changes:
+## Issues
+---------
+Known issue: *Functions can and will fail if the inputs are not correctly identified and formatted*.
+
+To submit bug reports and feature suggestions, or track changes:
    https://www.github.com/dimike96/MultiTool/issues
 
-TROUBLESHOOTING
----------------
+### **Note**:
 
- * If the menu does not display, check the following:
-
-   - 'Ctrl' + 'C'
-   - Verify Python 3.9 installation (Unsure of specific compatibility)
-   - python3 multitool.py
+This is more for my learning than anything else, and these are likely not the most efficient methods to accomplish these tasks.
