@@ -10,7 +10,6 @@
 # imports
 import binascii
 import base64
-import random
 import string
 
 # Assets section
