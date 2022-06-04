@@ -34,11 +34,18 @@ ALPHABET_upper = string.ascii_uppercase
 
 # Sort of hub function with interface to choose which operation to perform on a given string
 def main():
+    try:
+        with open("banner.txt", "r") as banner:
+            logo = banner.read()
+            print(logo)
+        banner.close()
+    except FileNotFoundError:
+        pass
     print("Welcome to Multitool V.1.1.0!!")
     print(" ")
     print("This tool can encode and decode morse, base64, hex and ascii. ")
     print("0=MorseDecoder, 1=MorseEncoder, 2=Base64Decoder, 3=Base64Encoder, 4=AsciiDecoder, 5=AsciiEncoder, 6=HexDecoder, 7=HexEncoder, 8=Deicmal2Binary, 9=Binary2Decimal, C=Ceaser (Q to Quit)")
-    valid_inputs = 'Q0123456789C'
+    valid_inputs = 'qQ0123456789C'
     loop_cond = True
     while loop_cond == True:
         try:
@@ -67,7 +74,7 @@ def main():
                 print(bindec())
             if selection == 'C':
                 print(ceasar())
-            if selection == 'Q':
+            if selection == 'Q' or selection == 'q':
                 loop_cond = False
                 exit_tool()
         except ValueError:
