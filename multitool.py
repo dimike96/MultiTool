@@ -158,31 +158,29 @@ def bindec():   # Binary to decimal function
     output = int(string_binary,2)
     return output
 
-def ceasar(): # Ceaser cipher function
-    cyphertext = input('Enter String: ')
-    while True:
-        try:
-            rot_val = int(input('Enter ROT value: '))
-            break
-        except ValueError:
-            print('ROT value needs to be an integer!')
-    output = ""
-    for char in cyphertext:
-        if char in ALPHABET_lower:
-            char_index = ALPHABET_lower.index(char)
-            new_char_index = char_index + rot_val
-            if new_char_index > (len(ALPHABET_lower) - 1):
-                new_char_index = new_char_index % 26
-            output = output + (ALPHABET_lower[new_char_index])
-        elif char in ALPHABET_upper:
-            char_index = ALPHABET_upper.index(char)
-            new_char_index = char_index + rot_val
-            if new_char_index > len(ALPHABET_upper):
-                new_char_index = new_char_index % len(ALPHABET_upper)
-            output = output + (ALPHABET_upper[new_char_index])
-        else:
-            output = output + (char)
-    return output
+def ceasar(): # Ceasar shift function
+    target_string = input('Enter String: ')
+    all_solutions = []
+    i = 0
+    while i < 26:
+        new_solution = ""
+        for char in target_string:
+
+            if char in ALPHABET_upper:
+                char_index = ALPHABET_upper.index(char)
+                new_char = ALPHABET_upper[(char_index + i) % len(ALPHABET_upper)]
+                new_solution += new_char
+            elif char in ALPHABET_lower:
+                char_index = ALPHABET_lower.index(char)
+                new_char = ALPHABET_lower[(char_index + i) % len(ALPHABET_lower)]
+                new_solution += new_char
+            else:
+                new_char = char
+                new_solution += char
+            
+        i += 1
+        all_solutions.append(new_solution)
+    return all_solutions
     
 def exit_tool():    # This is just a exit output
     print("Thanks for using this tool.")
